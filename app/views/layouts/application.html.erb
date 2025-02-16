@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <%= render "layouts/header" %>
+      <main class="main">
+        <div class="main__container">
+          <%= render "layouts/alerts" %>
+          <%= yield %>
+        </div>
+      </main>
+      <%= render "layouts/footer" %>
+    </div>
+  </body>
+</html>

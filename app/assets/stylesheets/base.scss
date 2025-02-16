@@ -1,0 +1,46 @@
+.btn {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: .5px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #63e5ff;
+  padding: .25em .5em;
+  @media (max-width: 479px) {
+    font-size: 1rem;
+  }
+  &_red {
+    background-color: #f00;
+  }
+}
+
+.input {
+  border-radius: 10px;
+  border: 2px solid #63e5ff;
+  padding: 5px;
+  &:focus {
+    border-color: #0276ab;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  & input {
+    max-width: 12em;
+  }
+  &_spaced {
+    justify-content: space-between;
+  }
+}
+
+.ava {
+  width: 50px;
+  height: 50px;
+}
+
+.section > *:not(:last-child) {
+  margin: 0 0 20px;
+}

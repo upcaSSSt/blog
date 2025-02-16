@@ -1,0 +1,11 @@
+<div class="post">
+  <%= render "layouts/autor", locals: {id: post.user.id, name: post.user.name, time: post.created_at} %>
+  <a class="post__body" href="/posts/<%= post.id %>">
+    <%= post.body %>
+  </a>
+  <div class="post__imgs">
+    <% post.images.each do |image| %>
+      <figure class="post__img"><%= image_tag(image) %></figure>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<%= form_with model: @post, class: "section" do |form| %>
+  <fieldset>
+    <%= form.text_area :body, class: "input" %>
+  </fieldset>
+  <%= yield %>
+  <fieldset>
+    <%= form.file_field :images, multiple: true %>
+  </fieldset>
+  
+  <%= form.button "Готово", class: "btn" %>
+<% end %>

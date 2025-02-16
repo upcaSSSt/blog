@@ -1,0 +1,6 @@
+<div class="post">
+  <%= render "layouts/autor", locals: {id: comment.user.id, name: comment.user.name, time: comment.created_at} %>
+  <p>
+    <%= comment.body %>
+  </p>
+</div>

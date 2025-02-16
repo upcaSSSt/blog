@@ -1,0 +1,13 @@
+<section class="section">
+  <%= render @post %>
+
+  <%= form_with model: [@post, @post.comments.build] do |form| %>
+    <%= form.text_area :body, class: "input", placeholder: "Комментарий..." %>
+    <div class="row">
+      <%= form.submit "Отправить", class: "btn" %>
+      <%= link_to "Редактировать пост", edit_post_path, class: "btn" %>
+    </div>
+  <% end %>
+
+  <%= render partial: "comment", collection: @post.comments.order(created_at: :desc) %>
+</section>

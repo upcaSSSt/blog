@@ -1,0 +1,13 @@
+<section class="section">
+  <div class="row">
+    <% if current_user %>
+      <%= link_to "Пост", new_post_path, class: "btn" %>
+    <% end %>
+    <%= form_with url: posts_path, method: :get, class: "row" do |form| %>
+      <%= form.search_field :q, class: "input", placeholder: "Поиск постов..." %>
+      <%= form.submit "Искать", class: "btn" %>
+    <% end %>
+  </div>
+  
+  <%= render @posts.order(created_at: :desc) %>
+</section>

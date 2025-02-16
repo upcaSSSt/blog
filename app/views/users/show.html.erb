@@ -1,0 +1,17 @@
+<section class="section">
+  <%= render @user %>
+
+  <div class="row">
+    <% if current_user %>
+      <% if current_user.id == params[:id].to_i %>
+        <%= link_to "Пост", new_post_path, class: "btn" %>
+      <% elsif current_user.following_ids.include? params[:id].to_i %>
+        <%= button_to "Отписаться", unfollow_user_path, method: :post, class: "btn btn_red" %>
+      <% else %>
+        <%= button_to "Подписаться", follow_user_path, method: :post, class: "btn" %>
+      <% end %>
+    <% end %>
+  </div>
+  
+  <%= render partial: "posts/post", collection: @user.posts.order(created_at: :desc) %>
+</section>

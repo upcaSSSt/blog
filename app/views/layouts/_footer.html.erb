@@ -1,0 +1,9 @@
+<footer class="footer">
+  <% if current_user %>
+    <nav class="footer__container row row_spaced">
+      <%= link_to "Посты", "/" %>
+      <%= link_to "Профиль", show_user_path(current_user) %>
+      <%= link_to "Люди", users_path %>
+    </nav>
+  <% end %>
+</footer>

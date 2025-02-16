@@ -1,0 +1,14 @@
+<% if current_user && current_user.id == @post.user_id %>
+  <%= render layout: "form" do %>
+    <div class="post__imgs">
+      <% @post.images.each do |image| %>
+        <figure class="post__img"><%= image_tag(image) %></figure>
+        <%= link_to "Удалить", purge_post_image_path(image), data: { turbo_method: :delete }, class: "btn btn_red" %>
+      <% end %>
+    </div>
+  <% end %>
+  <%= link_to "Удалить", @post, data: { turbo_method: :delete }, class: "del-btn btn btn_red" %>
+<% else %>
+  <p>Вы не являетесь создателем</p>
+  <%= link_to "Назад", url_for(:back), class: "btn" %>
+<% end %>

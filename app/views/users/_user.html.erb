@@ -1,0 +1,6 @@
+<a class="user-card row" href="/users/<%= user.id %>">
+  <%= render "layouts/ava", locals: {class: "user-card__ava", id: user.id} %>
+  <h3 class="user-card__name">
+    <%= user.name %>
+  </h3>
+</a>

@@ -1,0 +1,13 @@
+.user-card {
+  border-radius: 10px;
+  box-shadow: 3px 3px 1px #000;
+  padding: 10px;
+  &__ava {
+    flex: 0 0 80px;
+    height: 80px;
+  }
+  &__name {
+    font-size: 25px;
+  }
+}
+

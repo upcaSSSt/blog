@@ -1,0 +1,26 @@
+.post {
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  &__time {
+    margin-left: auto;
+  }
+  &__body {
+    display: block;
+  }
+  &__imgs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 5px;
+  }
+  &__img {
+    flex: 0 1 33%;
+    @media (max-width: 768px) {
+      flex: 1 1 100%;
+    }
+    & img {
+      width: 100%;
+    }
+  }
+}

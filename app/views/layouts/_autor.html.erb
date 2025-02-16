@@ -1,0 +1,5 @@
+<a class="row" href="/users/<%= locals[:id] %>">
+  <%= render "layouts/ava", locals: {class: "ava", id: locals[:id]} %>
+  <h4><%= locals[:name] %></h4>
+  <time class="post__time"><%= time_ago_in_words(locals[:time]) %></time>
+</a>
