@@ -26,4 +26,12 @@ Rails.application.routes.draw do
     end
   end
   get "up" => "rails/health#show", as: :rails_health_check
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :posts
+      post "posts/:post_id/:user_id/comments", to: "comments#create"
+      resources :users, only: [:index, :show]
+    end
+  end
 end

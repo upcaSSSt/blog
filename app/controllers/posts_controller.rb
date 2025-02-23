@@ -5,10 +5,10 @@ class PostsController < ApplicationController
     else
       @posts = Post.where(user_id: current_user.following_ids)
     end
-    respond_to do |format|
-      format.html
-      format.json { render json: @posts }
-    end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def new
@@ -19,14 +19,6 @@ class PostsController < ApplicationController
     post = current_user.posts.create! params.require(:post).permit(:body)
     post.images.attach(params[:post][:images])
     redirect_to post
-  end
-
-  def show
-    @post = Post.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.json { render json: @post }
-    end
   end
 
   def edit
