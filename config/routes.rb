@@ -29,9 +29,13 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     namespace 'v1' do
-      resources :posts
-      post "posts/:post_id/:user_id/comments", to: "comments#create"
-      resources :users, only: [:index, :show]
+      resources :posts, only: [:index, :show, :update, :destroy]
+      delete "purge_image/:id", to: "posts#purge_image"
+      resources :users, only: [:index, :show] do
+        resources :posts, only: [:create] do
+          resources :comments, only: [:create]
+        end
+      end
     end
   end
 end

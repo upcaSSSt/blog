@@ -16,7 +16,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.create! params.require(:post).permit(:body)
+    post = current_user.posts.create(params.require(:post).permit(:body))
     post.images.attach(params[:post][:images])
     redirect_to post
   end
@@ -42,6 +42,8 @@ class PostsController < ApplicationController
   end
 
   def purge_image
+    puts "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+    puts params[:id]
     image = ActiveStorage::Attachment.find(params[:id])
     image.purge
     redirect_back fallback_location: "/"

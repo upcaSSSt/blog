@@ -1,6 +1,8 @@
 module Api
   module V1
     class PostsController < ApplicationController
+      protect_from_forgery with: :null_session
+
       def index
         posts = Post.order(created_at: :desc)
         render json: {posts: posts}, status: :ok
@@ -10,13 +12,14 @@ module Api
         post = Post.find(params[:id])
         render json: {
           post: post,
-          images: post.images.map { |img| img.signed_id },
+          images: post.images.map { |img| img.id },
           comments: post.comments,
         }, status: :ok
       end
 
       def create
-        post = current_user.posts.create! params.require(:post).permit(:body)
+        user = User.find(params[:user_id])
+        post = user.posts.create(params.require(:post).permit(:body))
         render json: {post: post}, status: :ok
       end
 
@@ -31,14 +34,15 @@ module Api
 
       def destroy
         post = Post.find(params[:id])
+        post.comments.destroy_all
         post.destroy
-        render json: {message: "Deletes posts/#{params[:id]}"}, status: :ok
+        render json: {message: "Deleted posts/#{params[:id]}"}, status: :ok
       end
 
       def purge_image
         image = ActiveStorage::Attachment.find(params[:id])
         image.purge
-        render json: {message: "Deletes image #{params[:id]}"}, status: :ok
+        render json: {message: "Deleted image #{params[:id]}"}, status: :ok
       end
     end
   end
