@@ -20,7 +20,7 @@ module Api
       def create
         user = User.find(params[:user_id])
         post = user.posts.create(params.require(:post).permit(:body))
-        render json: {post: post}, status: :ok
+        render json: {post: post}, status: :created
       end
 
       def update
@@ -36,13 +36,13 @@ module Api
         post = Post.find(params[:id])
         post.comments.destroy_all
         post.destroy
-        render json: {message: "Deleted posts/#{params[:id]}"}, status: :ok
+        render json: {message: "Deleted posts/#{params[:id]}"}, status: :no_content
       end
 
       def purge_image
         image = ActiveStorage::Attachment.find(params[:id])
         image.purge
-        render json: {message: "Deleted image #{params[:id]}"}, status: :ok
+        render json: {message: "Deleted image #{params[:id]}"}, status: :no_content
       end
     end
   end

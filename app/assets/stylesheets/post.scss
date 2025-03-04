@@ -27,3 +27,39 @@
     }
   }
 }
+
+.slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000cc;
+  &__close {
+    position: absolute;
+    z-index: 10;
+    top: 10px;
+    left: 10px;
+    font-size: 3rem;
+    color: #fff;
+  }
+  &__btn {
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    &:nth-child(3) {
+      left: unset;
+      right: 0;
+    }
+  }
+  & img {
+    width: 100%;
+    height: 100%;
+    margin: 50vh 0 0 50vw;
+    transform: translate(-50%, -50%);
+    object-fit: contain;
+  }
+}

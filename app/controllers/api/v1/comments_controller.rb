@@ -7,7 +7,7 @@ module Api
         post = Post.find(params[:post_id])
         user = User.find(params[:user_id])
         comment = post.comments.create(body: params.require(:comment)[:body], user: user)
-        render json: {comment: comment}, status: :ok
+        render json: {comment: comment}, status: :created
       end
     end
   end

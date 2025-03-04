@@ -1,11 +1,17 @@
-<div class="post">
+<div class="post" data-controller="slider">
+  <div class="post__slider slider hide" data-slider-target="slider">
+    <button class="slider__close" data-action="click->slider#close">X</button>
+    <button class="slider__btn" data-action="click->slider#prev"></button>
+    <button class="slider__btn" data-action="click->slider#next"></button>
+    <img src="" alt="SliderImage" data-slider-target="img">
+  </div>
   <%= render "layouts/autor", locals: {id: post.user.id, name: post.user.name, time: post.created_at} %>
   <a class="post__body" href="/posts/<%= post.id %>">
     <%= post.body %>
   </a>
   <div class="post__imgs">
-    <% post.images.each do |image| %>
-      <figure class="post__img"><%= image_tag(image) %></figure>
+    <% post.images.each_with_index do |image, i| %>
+      <figure class="post__img" data-action="click->slider#open" data-slider-i-param="<%= i %>"><%= image_tag image, data: {slider_target: "slide"} %></figure>
     <% end %>
   </div>
 </div>
