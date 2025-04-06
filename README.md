@@ -51,3 +51,8 @@ DELETE
 http://localhost:3000/api/v1/posts/1 - удалить пост
 http://localhost:3000/api/v1/purge_image/1 - удалить картинку
 ```
+### Docker
+```
+sudo docker-compose build
+sudo docker compose up
+```
