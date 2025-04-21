@@ -1,11 +1,14 @@
 FROM ruby:3.0.2
 
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
-
-RUN mkdir /myapp
-WORKDIR /myapp
-
-COPY Gemfile Gemfile.lock ./
+RUN adduser --disabled-login app
+WORKDIR /home/app
+ADD Gemfile /home/app/Gemfile
+ADD Gemfile.lock /home/app/Gemfile.lock
 RUN bundle install
+COPY . ./
 
-ADD . /myapp
+RUN chmod -R 777 /home/app/
+USER app
+
+EXPOSE 3000
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
