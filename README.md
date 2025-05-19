@@ -52,7 +52,10 @@ http://localhost:3000/api/v1/posts/1 - удалить пост
 http://localhost:3000/api/v1/purge_image/1 - удалить картинку
 ```
 ### Docker
+https://hub.docker.com/repository/docker/upcast006/blog-app
 ```
-sudo docker-compose build
-sudo docker compose up
+sudo docker compose build
+sudo docker compose up -d
+docker exec -it blog-app
+rails db:migrate
 ```
