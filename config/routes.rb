@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index]
-  post "users/:id/follow", to: "users#follow", as: "follow_user"
-  post "users/:id/unfollow", to: "users#unfollow", as: "unfollow_user"
+  post "users/:cur_id/follow/:id/:flag", to: "users#follow", as: "follow_user"
 
   devise_for :users
   devise_scope :user do

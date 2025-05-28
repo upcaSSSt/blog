@@ -6,9 +6,11 @@
       <% if current_user.id == params[:id].to_i %>
         <%= link_to "Пост", new_post_path, class: "btn" %>
       <% elsif current_user.following_ids.include? params[:id].to_i %>
-        <%= button_to "Отписаться", unfollow_user_path, method: :post, class: "btn btn_red" %>
+        <%= button_to "Отписаться", follow_user_path(cur_id: current_user.id, id: params[:id], flag: "false"),
+          method: :post, class: "btn btn_red" %>
       <% else %>
-        <%= button_to "Подписаться", follow_user_path, method: :post, class: "btn" %>
+        <%= button_to "Подписаться", follow_user_path(cur_id: current_user.id, id: params[:id], flag: "true"),
+          method: :post, class: "btn" %>
       <% end %>
     <% end %>
   </div>

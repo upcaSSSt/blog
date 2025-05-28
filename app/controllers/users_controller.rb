@@ -8,14 +8,16 @@ class UsersController < ApplicationController
   end
 
   def follow
-    current_user.following_ids.push(params[:id].to_i)
-    current_user.save!
-    redirect_to "/"
-  end
-
-  def unfollow
-    current_user.following_ids.delete(params[:id].to_i)
-    current_user.save!
-    redirect_to "/"
+    user = User.find(params[:cur_id])
+    if (params[:flag] == "true")
+      user.following_ids.push(params[:id].to_i)
+    else
+      user.following_ids.delete(params[:id].to_i)
+    end
+    user.save!
+    respond_to do |format|
+      format.html { redirect_to "/" }
+      format.json { render json: user.following_ids }
+    end
   end
 end
