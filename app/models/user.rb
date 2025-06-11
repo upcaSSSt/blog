@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :posts
   has_many :comments
+  has_many :last_vieweds
+  has_many :chats, through: :last_vieweds
 
   before_create :default_following_ids
   def default_following_ids
