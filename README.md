@@ -35,6 +35,7 @@ http://localhost:3000/api/v1/users/1 - конкретный пользовате
 POST
 http://localhost:3000/api/v1/users/1/posts {"body": "..."} - создать пост от пользователя
 http://localhost:3000/api/v1/users/1/posts/1/comments {"body": "..."} - создать комментарий от пользователя к посту
+http://localhost:3000/users/1/follow/2/true.json - подписаться/отписаться от пользователя
 ```
 ```
 PUT
